@@ -2,10 +2,10 @@ package br.com.alura.comex;
 
 import br.com.alura.comex.dao.ClienteDao;
 import br.com.alura.comex.modelo.Cliente;
+import br.com.alura.comex.modelo.Endereco;
 import br.com.alura.comex.util.JpaUtil;
 
 import javax.persistence.EntityManager;
-
 
 public class MainClienteDao {
 
@@ -39,25 +39,53 @@ public class MainClienteDao {
         c3.setEmail("palmirinha@mail.com");
         c3.setStatus(Status.ATIVO);
 
-        System.out.println("\n" + "Cadastro de 3 Clientes: ");
+        Endereco e1 = new Endereco();
+        e1.setRua("Avenida Paulista");
+        e1.setNúmero("2000");
+        e1.setComplemento("Sala 8");
+        e1.setBairro("Bela Vista");
+        e1.setCidade("São Paulo");
+        e1.setEstado("São Paulo");
+
+        Endereco e2 = new Endereco();
+        e2.setRua("Rua 1");
+        e2.setNúmero("2");
+        e2.setComplemento("Sala 3");
+        e2.setBairro("Bairro 4");
+        e2.setCidade("Cidade 5");
+        e2.setEstado("São Paulo");
+
+        Endereco e3 = new Endereco();
+        e3.setRua("Rua 10");
+        e3.setNúmero("0");
+        e3.setComplemento("Sala 30");
+        e3.setBairro("Bairro 40");
+        e3.setCidade("Cidade 50");
+        e3.setEstado("São Paulo");
+
+        System.out.println("\n");
         em.getTransaction().begin();
         clienteDao.cadastrar(c1);
         clienteDao.cadastrar(c2);
         clienteDao.cadastrar(c3);
         em.getTransaction().commit();
         clienteDao.buscarTodos().forEach(System.out::println);
+        System.out.println("Cadastro de 3 Clientes");
 
-        System.out.println("\n" + "Alterar cliente para suspenso: ");
+        System.out.println("\n");
         em.getTransaction().begin();
-        c3.setStatus(Status.SUSPENSO);
-        clienteDao.atualizar(c3);
+        c1.setStatus(Status.SUSPENSO);
+        clienteDao.atualizar(c1);
         em.getTransaction().commit();
         clienteDao.buscarTodos().forEach(System.out::println);
+        System.out.println("Alterar cliente para suspenso");
 
-        System.out.println("\n" + "Pesquisar cliente pelo nome: ");
+        System.out.println("\n");
         System.out.println(clienteDao.buscaClientePorNome("Peter Parker"));
+        System.out.println("Pesquisar cliente pelo nome");
 
-        System.out.println("\n" + "Pesquisar clientes ativos: ");
+        System.out.println("\n");
         clienteDao.buscaTodosPorStatus(Status.ATIVO).forEach(System.out::println);
+        System.out.println("Pesquisar clientes ativos");
     }
 }

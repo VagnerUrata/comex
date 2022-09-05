@@ -15,7 +15,7 @@ public class CategoriaDao {
         this.em = entityManager;
     }
 
-    public List<Categoria> buscarTodos(){
+    public List<Categoria> buscarTodos() {
         String jpql = "SELECT cat FROM Categoria cat";
         return this.em.createQuery(jpql, Categoria.class).getResultList();
     }
@@ -37,21 +37,22 @@ public class CategoriaDao {
         this.em.remove(categoria);
     }
 
-    public List<Categoria> buscaCategoriasPorStatus(Status status){
+    public List<Categoria> buscaCategoriasPorStatus(Status status) {
         String jpql = "SELECT cat FROM Categoria cat WHERE cat.status= :status";
         return this.em.createQuery(jpql, Categoria.class).setParameter("status", status).getResultList();
     }
 
-    public Categoria buscaTodasCategorias(String nome){
+    public Categoria buscaTodasCategorias(String nome) {
         String jpql = "SELECT cat FROM Categoria c WHERE c.nome= :nome";
         return this.em.createQuery(jpql, Categoria.class).setParameter("nome", nome).getSingleResult();
     }
 
-    public Categoria buscaCategoriasAtivas(Status status){
+    public Categoria buscaCategoriasAtivas(Status status) {
         String jpql = "SELECT cat FROM Categoria cat WHERE cat.status= :status";
         return this.em.createQuery(jpql, Categoria.class).setParameter("status", status).getSingleResult();
     }
-    public Categoria buscaCategoriasInativas(Status status){
+
+    public Categoria buscaCategoriasInativas(Status status) {
         String jpql = "SELECT cat FROM Categoria cat WHERE cat.status= :status";
         return this.em.createQuery(jpql, Categoria.class).setParameter("status", status).getSingleResult();
     }

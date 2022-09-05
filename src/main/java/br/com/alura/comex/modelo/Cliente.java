@@ -1,6 +1,5 @@
 package br.com.alura.comex.modelo;
 
-
 import br.com.alura.comex.Status;
 
 import javax.persistence.*;
@@ -30,6 +29,17 @@ public class Cliente {
 
     @Column(nullable = false, length = 8)
     private Status status;
+
+    @Column(nullable = false)
+    private Endereco endereco;
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 
     public Long getId() {
         return id;
@@ -89,6 +99,6 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Nome: " + this.nome + " E-mail: " + this.email + " CPF: " + this.cpf + " Profissao: " + this.profissao + " Status: " + this.status;
+        return "Nome: " + this.nome + ", CPF: " + this.cpf + ", E-mail: " + this.email + ", Profissao: " + this.profissao + ", Status: " + this.status;
     }
 }

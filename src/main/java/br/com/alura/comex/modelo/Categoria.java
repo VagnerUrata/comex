@@ -45,6 +45,6 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return "Nome: " + this.nomeCategoria +" Status: " + this.status;
+        return "Nome: " + this.nomeCategoria + " Status: " + this.status;
     }
 }
