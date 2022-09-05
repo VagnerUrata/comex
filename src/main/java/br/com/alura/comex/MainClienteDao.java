@@ -23,6 +23,16 @@ public class MainClienteDao {
         c1.setEmail("punisher@mail.com");
         c1.setStatus(Status.ATIVO);
 
+        Endereco enderecoC1 = new Endereco();
+        enderecoC1.setRua("Avenida Paulista");
+        enderecoC1.setNumero("2000");
+        enderecoC1.setComplemento("Sala 8");
+        enderecoC1.setBairro("Bela Vista");
+        enderecoC1.setCidade("São Paulo");
+        enderecoC1.setEstado("São Paulo");
+
+        c1.setEndereco(enderecoC1);
+
         Cliente c2 = new Cliente();
         c2.setNome("Peter Parker");
         c2.setCpf("22233344455");
@@ -30,6 +40,16 @@ public class MainClienteDao {
         c2.setProfissao("Fotógrafo");
         c2.setEmail("spiderman@mail.com");
         c2.setStatus(Status.ATIVO);
+
+        Endereco enderecoC2 = new Endereco();
+        enderecoC2.setRua("Rua 1");
+        enderecoC2.setNumero("2");
+        enderecoC2.setComplemento("Sala 3");
+        enderecoC2.setBairro("Bairro 4");
+        enderecoC2.setCidade("Cidade 5");
+        enderecoC2.setEstado("Minas Gerais");
+
+        c2.setEndereco(enderecoC2);
 
         Cliente c3 = new Cliente();
         c3.setNome("Palmirinha");
@@ -39,29 +59,15 @@ public class MainClienteDao {
         c3.setEmail("palmirinha@mail.com");
         c3.setStatus(Status.ATIVO);
 
-        Endereco e1 = new Endereco();
-        e1.setRua("Avenida Paulista");
-        e1.setNúmero("2000");
-        e1.setComplemento("Sala 8");
-        e1.setBairro("Bela Vista");
-        e1.setCidade("São Paulo");
-        e1.setEstado("São Paulo");
+        Endereco enderecoC3 = new Endereco();
+        enderecoC3.setRua("Rua 10");
+        enderecoC3.setNumero("0");
+        enderecoC3.setComplemento("Sala 30");
+        enderecoC3.setBairro("Bairro 40");
+        enderecoC3.setCidade("Cidade 50");
+        enderecoC3.setEstado("Rio de Janeiro");
 
-        Endereco e2 = new Endereco();
-        e2.setRua("Rua 1");
-        e2.setNúmero("2");
-        e2.setComplemento("Sala 3");
-        e2.setBairro("Bairro 4");
-        e2.setCidade("Cidade 5");
-        e2.setEstado("São Paulo");
-
-        Endereco e3 = new Endereco();
-        e3.setRua("Rua 10");
-        e3.setNúmero("0");
-        e3.setComplemento("Sala 30");
-        e3.setBairro("Bairro 40");
-        e3.setCidade("Cidade 50");
-        e3.setEstado("São Paulo");
+        c3.setEndereco(enderecoC3);
 
         System.out.println("\n");
         em.getTransaction().begin();
@@ -87,5 +93,9 @@ public class MainClienteDao {
         System.out.println("\n");
         clienteDao.buscaTodosPorStatus(Status.ATIVO).forEach(System.out::println);
         System.out.println("Pesquisar clientes ativos");
+
+        System.out.println("\n");
+        clienteDao.clientePorEstado().forEach(System.out::println);
+        System.out.println("Pesquisar clientes por estado");
     }
 }

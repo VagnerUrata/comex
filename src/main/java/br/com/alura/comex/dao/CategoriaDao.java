@@ -56,4 +56,5 @@ public class CategoriaDao {
         String jpql = "SELECT cat FROM Categoria cat WHERE cat.status= :status";
         return this.em.createQuery(jpql, Categoria.class).setParameter("status", status).getSingleResult();
     }
+
 }

@@ -42,14 +42,17 @@ public class Cliente {
     }
 
     public Long getId() {
+
         return id;
     }
 
     public void setId(Long id) {
+
         this.id = id;
     }
 
     public String getNome() {
+
         return nome;
     }
 
@@ -99,6 +102,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Nome: " + this.nome + ", CPF: " + this.cpf + ", E-mail: " + this.email + ", Profissao: " + this.profissao + ", Status: " + this.status;
+        return "Nome: " + this.nome + ", CPF: " + this.cpf + ", E-mail: " + this.email + ", Profissao: " + this.profissao + ", Status: " + this.status + " Endereço: " + this.endereco;
     }
+
 }

@@ -2,6 +2,7 @@ package br.com.alura.comex.dao;
 
 import br.com.alura.comex.Status;
 import br.com.alura.comex.modelo.Cliente;
+import br.com.alura.comex.modelo.ClientePorEstado;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -45,4 +46,16 @@ public class ClienteDao {
         String jpql = "SELECT c FROM Cliente c WHERE c.nome= :nome";
         return this.em.createQuery(jpql, Cliente.class).setParameter("nome", nome).getSingleResult();
     }
+
+    public List<ClientePorEstado> clientePorEstado() {
+        String jpql = "SELECT new br.com.alura.comex.modelo.ClientePorEstado ("
+                + "cliente.endereco.estado, "
+                + "COUNT(cliente)) "
+                + "FROM Cliente cliente "
+                + "GROUP BY cliente.endereco.estado "
+                + "ORDER BY COUNT(cliente) DESC";
+        return em.createQuery(jpql, ClientePorEstado.class)
+                .getResultList();
+    }
+
 }
