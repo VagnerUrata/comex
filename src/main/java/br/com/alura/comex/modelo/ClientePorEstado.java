@@ -22,7 +22,7 @@ public class ClientePorEstado {
 
 	@Override
 	public String toString() {
-		return "Quantidade de cliente por estado  "+ this.estado +": " + this.qntdClientes;
+		return "Quantidade de cliente por estado: "+ this.estado +": " + this.qntdClientes;
 	}
 
 
