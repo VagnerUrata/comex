@@ -31,6 +31,9 @@ public class Cliente {
     @Column(nullable = false)
     private Endereco endereco;
 
+    @OneToOne
+    private Usuario usuario;
+
     public Cliente() {
     }
 
