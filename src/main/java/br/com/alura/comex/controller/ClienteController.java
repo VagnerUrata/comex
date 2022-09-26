@@ -5,6 +5,8 @@ import br.com.alura.comex.controller.form.ClienteForm;
 import br.com.alura.comex.modelo.Cliente;
 import br.com.alura.comex.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,18 +18,20 @@ import java.util.List;
 public class ClienteController {
 
     @Autowired
-    private ClienteRepository repositorio;
+    private ClienteRepository clienteRepository;
 
     @GetMapping
+    @Cacheable(value = "listaTodosClientes")
     public List<ClienteDto> lista() {
-        List<Cliente> lista = repositorio.findAll();
+        List<Cliente> lista = clienteRepository.findAll();
         return ClienteDto.converter(lista);
     }
 
     @PostMapping
-    public ResponseEntity<ClienteForm> cadastrar(@RequestBody @Valid ClienteForm form) {
+    @CacheEvict(value = "listaTodosClientes", allEntries = true)
+    public ResponseEntity<ClienteForm> cadastrarCliente(@RequestBody @Valid ClienteForm form) {
         Cliente cliente = form.converter();
-        this.repositorio.save(cliente);
+        this.clienteRepository.save(cliente);
 
         return ResponseEntity.ok(form);
     }
